@@ -18,6 +18,8 @@ const client = new MongoClient(uri, {
 let cachedDb = null;
 
 export default async function dbConnect(collectionName) {
+ 
+  
   if (!cachedDb) {
     await client.connect();
     cachedDb = client.db(dbName);

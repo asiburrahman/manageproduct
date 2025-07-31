@@ -24,7 +24,7 @@ const Hero = () => {
           <p className="mb-6 text-lg md:text-xl">
             Organize, manage, and showcase your products with ease using our modern, feature-rich catalog system.
           </p>
-          <Link href={`/products`}>
+          <Link href={`/products`}> 
             <button className="btn btn-accent btn-lg">Browse Products</button>
           </Link>
         </div>

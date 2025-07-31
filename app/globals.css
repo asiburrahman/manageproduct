@@ -5,8 +5,3 @@
   background: #000000;
 background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 88%, rgba(0, 0, 0, 1) 51%);
 }
-
-.bg_color{
-
-background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
-}
