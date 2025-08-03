@@ -1,6 +1,7 @@
 
 import Hero from "./components/Hero";
-import Service from "./service/componant/service";
+import Service from "./service/componant/Service";
+
 
 
 export default function Home() {
@@ -8,7 +9,8 @@ export default function Home() {
   <div>
     
     <Hero></Hero>
-  <Service></Service>
+    <Service></Service>
+
   </div>
   );
 }

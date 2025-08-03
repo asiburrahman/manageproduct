@@ -1,7 +1,5 @@
 import Image from "next/image";
-
 import React from "react";
-
 import LoginForm from "./components/LoginForm";
 
 export default function LoginPage() {
@@ -13,10 +11,10 @@ export default function LoginPage() {
         <div className="col-span-12 md:col-span-6 flex justify-center items-center">
           <Image
             className="hidden md:block"
-            src={"/assets/images/login/login.svg"}
+            src="/assets/images/login/login.svg"
             width={460}
             height={500}
-            alt={"Authentication Image"}
+            alt="Authentication Illustration"
           />
         </div>
 

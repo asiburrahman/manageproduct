@@ -10,8 +10,9 @@ export async function generateMetadata({ params }) {
 }
 
 const ProductDetails = async ({ params }) => {
+  const {id} = await params
   const collection = await dbConnect("products");
-  const product = await collection.findOne({ _id: new ObjectId(params.id) });
+  const product = await collection.findOne({ _id: new ObjectId(id) });
 
   if (!product) {
     return <div className="text-center mt-10">Product not found.</div>;
@@ -40,6 +41,7 @@ const ProductDetails = async ({ params }) => {
             src={image}
             alt={name}
             fill
+            sizes="hight: auto, width: auto"
             className="object-cover rounded-xl shadow-lg"
           />
         </div>

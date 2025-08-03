@@ -3,17 +3,20 @@ import { FaGithub } from "react-icons/fa6";
 import { FaGoogle } from "react-icons/fa";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 import { useEffect } from "react";
-export default function SocialLogin() {
-  const router = useRouter();
+import { toast } from "react-toastify";
+
+
+
+const SocialLogin = () => {
+    const router = useRouter();
   const session = useSession();
 
   const handleSocialLogin = (providerName) => {
     signIn(providerName);
   };
 
-  useEffect(() => {
+   useEffect(() => {
     if (session?.status == "authenticated") {
       router.push("/");
       toast("Successfully Logged IN");
@@ -36,4 +39,6 @@ export default function SocialLogin() {
       </p>
     </div>
   );
-}
+};
+
+export default SocialLogin;

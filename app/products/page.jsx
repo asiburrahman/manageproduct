@@ -1,12 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
 import ProductCard from "../service/componant/ProductCard";
+import { useSession } from "next-auth/react";
 
 
 const ProductsPage = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [search, setSearch] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+
 
   useEffect(() => {
     fetch("/api/products")

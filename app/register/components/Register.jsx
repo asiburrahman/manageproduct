@@ -38,6 +38,8 @@ const Register = () => {
      const result = await saveUserDataInDB({ name, email, password, image: photoUrl });
      console.log(result);
      
+     
+      if(!result?.insertedId) return toast.error('Something Wrong!!');
       setLoading(false)
       toast.success('Account created successfully!');
     } catch (error) {
@@ -66,7 +68,7 @@ const Register = () => {
   // };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base-300 px-4">
+    <div className=" flex items-center justify-center bg-base-300 px-4">
       <ToastContainer />
       <div className="card w-full max-w-sm  shadow-xl rounded-lg p-6">
         <h2 className="text-3xl font-bold text-center text-primary mb-6">Register</h2>
