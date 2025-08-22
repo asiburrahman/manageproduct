@@ -53,7 +53,7 @@ export default function LoginForm() {
 
   return (
     <div className="flex items-center justify-center bg-base-300 px-4 ">
-      <div className="card w-full max-w-sm shadow-xl rounded-lg p-6">
+      <div className="card w-full max-w-sm  shadow-xl rounded-lg p-6">
         <h2 className="text-3xl font-bold text-center text-primary mb-6">Login</h2>
 
         <form onSubmit={handleLogin} className="space-y-4">
