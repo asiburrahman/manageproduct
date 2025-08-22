@@ -25,18 +25,18 @@ const SocialLogin = () => {
 
   return (
     <div className="flex justify-center gap-8">
-      <p
+      <button 
         onClick={() => handleSocialLogin("google")}
-        className="bg-slate-200 rounded-full p-3"
+        className=" rounded-full p-3 btn btn-primary"
       >
         <FaGoogle type="button" />
-      </p>
-      <p
+      </button>
+      {/* <p
         onClick={() => handleSocialLogin("github")}
         className="bg-slate-200 rounded-full p-3"
       >
         <FaGithub type="button" />
-      </p>
+      </p> */}
     </div>
   );
 };

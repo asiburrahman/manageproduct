@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ProductManage 🛒
 
-## Getting Started
+ProductManage is a modern web application for managing products with features like product listing, product details, discounts, stock availability, and user-friendly navigation. Built with **Next.js**, **Tailwind CSS**, and **MongoDB**, it provides a smooth and responsive experience.
 
-First, run the development server:
+---
 
-```bash
+## 🚀 Features
+- Browse product catalog with images, prices, and discounts.
+- View detailed product information with ratings and stock availability.
+- Add products to the cart.
+- Dynamic routing for product details pages.
+- Responsive UI with Tailwind CSS.
+- Server-side rendering (SSR) for SEO and performance.
+- Secure image upload & product management (Admin functionality coming soon).
+
+---
+
+## 🛠️ Setup & Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/productmanage.git
+   cd productmanage
+Install dependencies
+
+bash
+Copy
+Edit
+npm install
+Create .env.local file in the project root and add:
+
+env
+Copy
+Edit
+MONGODB_URI=your_mongodb_connection_string
+NEXT_PUBLIC_API_URL=http://localhost:3000
+Run the development server
+
+bash
+Copy
+Edit
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Open http://localhost:3000 in your browser 🎉
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📂 Route Summary
+Route	Description
+/ Homepage with product listings
+/products/[id]	Dynamic product details page
+/about	About page with project information
+/add-product Add product with protected route
+/contact	Contact page with form and contact details
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+📦 Tech Stack
+Frontend: Next.js, React, Tailwind CSS, DaisyUI
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Backend: Next.js API routes, MongoDB
 
-## Learn More
+Auth: (Planned) NextAuth.js
 
-To learn more about Next.js, take a look at the following resources:
+Deployment: Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+📌 Future Enhancements
+Admin dashboard for product management (CRUD).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Authentication with NextAuth (Google, GitHub, Credentials).
 
-## Deploy on Vercel
+Shopping cart with checkout system.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Image upload using Cloudinary or Firebase.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Role-based access for Admin & Users.
+
+👨‍💻 Author
+Asibur Rahman
+Portfolio | GitHub | LinkedIn

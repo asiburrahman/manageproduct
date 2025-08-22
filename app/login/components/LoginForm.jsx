@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import { toast } from "react-toastify";
 import Link from "next/link";
-// import SocialLogin from "./SocialLogin";
+import SocialLogin from "./SocialLogin";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -96,7 +96,7 @@ export default function LoginForm() {
 
         <div className="divider">OR</div>
 
-        {/* <SocialLogin /> */}
+        <SocialLogin />
 
         <p className="text-sm text-center mt-4">
           Don’t have an account?{" "}
