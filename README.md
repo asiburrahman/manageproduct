@@ -19,57 +19,62 @@ ProductManage is a modern web application for managing products with features li
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/productmanage.git
+   git clone https://github.com/asiburrahman/manageproduct
    cd productmanage
-Install dependencies
+   ```
 
-bash
-Copy
-Edit
-npm install
-Create .env.local file in the project root and add:
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-env
-Copy
-Edit
-MONGODB_URI=your_mongodb_connection_string
-NEXT_PUBLIC_API_URL=http://localhost:3000
-Run the development server
+3. **Create `.env.local` file** in the project root and add:
+   ```env
+   MONGODB_URI=your_mongodb_connection_string
+   NEXT_PUBLIC_API_URL=http://localhost:3000
+   ```
 
-bash
-Copy
-Edit
-npm run dev
-Open http://localhost:3000 in your browser 🎉
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-📂 Route Summary
-Route	Description
-/ Homepage with product listings
-/products/[id]	Dynamic product details page
-/about	About page with project information
-/add-product Add product with protected route
-/contact	Contact page with form and contact details
+5. Open [http://localhost:3000](http://localhost:3000) in your browser 🎉
 
-📦 Tech Stack
-Frontend: Next.js, React, Tailwind CSS, DaisyUI
+---
 
-Backend: Next.js API routes, MongoDB
+## 📂 Route Summary
 
-Auth: (Planned) NextAuth.js
+### Frontend Routes
+| Route                 | Description                                  |
+|-----------------------|----------------------------------------------|
+| `/`                   | Homepage with product listings               |
+| `/products/[id]`      | Dynamic product details page                 |
+| `/about`              | About page with project information          |
+| `/contact`            | Contact page with form and contact details   |
+| `/add-product`        | add product                                  |
 
-Deployment: Vercel
 
-📌 Future Enhancements
-Admin dashboard for product management (CRUD).
 
-Authentication with NextAuth (Google, GitHub, Credentials).
+---
 
-Shopping cart with checkout system.
+## 📦 Tech Stack
+- **Frontend:** Next.js, React, Tailwind CSS, DaisyUI
+- **Backend:** Next.js API routes, MongoDB
+- **Auth:** (Planned) NextAuth.js
+- **Deployment:** Vercel
 
-Image upload using Cloudinary or Firebase.
+---
 
-Role-based access for Admin & Users.
+## 📌 Future Enhancements
+- Admin dashboard for product management (CRUD).
+- Authentication with NextAuth (Google, GitHub, Credentials).
+- Shopping cart with checkout system.
+- Image upload using Cloudinary or Firebase.
+- Role-based access for Admin & Users.
 
-👨‍💻 Author
-Asibur Rahman
-Portfolio | GitHub | LinkedIn
+---
+
+## 👨‍💻 Author
+- **Asibur Rahman**  
+  [Portfolio](https://asibur-portfolio-react.netlify.app) | [GitHub](https://github.com/asiburrahman) | [LinkedIn](https://www.linkedin.com/in/asiburrahman/)
