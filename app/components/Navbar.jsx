@@ -85,14 +85,18 @@ const Navbar = () => {
           </div>
           <div className="flex items-center justify-center gap-2">
             <Link href="/" className="text-sm font-bold md:text-2xl lg:text-3xl">
-              <img className="w-12 h-12 rounded-full md:inline-block" src="#" alt="logo" />
+              <img className="w-12 h-12 rounded-full md:inline-block" src="/logo.png" alt="logo" />
             </Link>
+            <Link href="/">
+            <h1 className="text-xl hidden md:block">ProductManage</h1>
+            </Link>
+
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{link}</ul>
         </div>
-        <div className="navbar-end flex gap-2">
+        <div className="navbar-end flex gap-1">
 
 
           <ul className="menu menu-horizontal px-1">
@@ -104,12 +108,12 @@ const Navbar = () => {
                   </button></li></>) : (<>
                     <li>
                       <Link href={"/register"} className="flex items-center gap-1">
-                        <FaUserPlus /> Register
+                        <FaUserPlus className="hidden md:block" /> Register
                       </Link>
                     </li>
                     <li>
-                      <Link href={"/login"} className="flex items-center gap-1">
-                        <FaSignInAlt /> Login
+                      <Link href={"/login"} className="flex items-center">
+                        <FaSignInAlt className="hidden md:block" /> Login
                       </Link>
                     </li>
                   </>)
