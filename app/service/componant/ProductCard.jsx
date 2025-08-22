@@ -11,7 +11,9 @@ const ProductCard = ({ product }) => {
     <div className="card bg-white shadow-xl hover:shadow-2xl transition-all duration-300">
       <figure className="h-48 relative">
         <Image
-          src={image}
+          src={image && image.startsWith("http")
+          ? product.image
+          : "/assets/images/products/1.png"}
           alt={name}
           fill
            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
