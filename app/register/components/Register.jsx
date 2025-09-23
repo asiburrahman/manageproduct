@@ -35,8 +35,8 @@ const Register = () => {
 
 
 
-     const result = await saveUserDataInDB({ name, email, password, image: photoUrl });
-     console.log(result);
+     const result = await saveUserDataInDB({ name, email, password, image: photoUrl, role: "user" });
+    //  console.log(result);
      
      
       if(!result?.insertedId) return toast.error('Something Wrong!!');

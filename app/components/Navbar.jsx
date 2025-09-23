@@ -53,7 +53,7 @@ const link = (
 
 const Navbar = () => {
   const { data: session, status } = useSession();
-  console.log(session);
+  // console.log(session);
 
   return (
     <div className="sticky top-0 z-50 shadow-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white">

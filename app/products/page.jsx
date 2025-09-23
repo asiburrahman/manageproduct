@@ -16,7 +16,7 @@ const ProductsPage = () => {
       .then((data) => setAllProducts(data));
   }, []);
 
-  console.log(allProducts);
+  // console.log(allProducts);
   
 
   const filteredProducts = allProducts.filter((product) => {

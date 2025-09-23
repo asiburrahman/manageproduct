@@ -99,7 +99,7 @@ export default function LoginForm() {
         <SocialLogin />
 
         <p className="text-sm text-center mt-4">
-          Don’t have an account?{" "}
+          Don't have an account?{" "}
           <Link href="/register" className="text-primary font-semibold hover:underline">
             Register here
           </Link>

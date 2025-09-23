@@ -19,10 +19,11 @@ export const authOptions = {
           if (!user) {
             throw new Error("Invalid email or password"); // ✅ Proper custom error
           }
-
+        console.log("User is", user);
+          
           return user;
         } catch (error) {
-          console.error("Authorization error:", error);
+          // console.error("Authorization error:", error);
           throw new Error("Invalid email or password"); // ✅ Show custom error in client
         }
       },
@@ -73,7 +74,7 @@ export const authOptions = {
 
         return true;
       } catch (error) {
-        console.error("OAuth signIn error:", error);
+        // console.error("OAuth signIn error:", error);
         return false;
       }
     },

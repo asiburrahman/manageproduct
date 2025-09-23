@@ -5,10 +5,10 @@ import { NextResponse } from "next/server";
 // This function can be marked `async` if using `await` inside
 export const middleware = async (req) => {
 //   return NextResponse.redirect(new URL('/home', request.url))
-console.log("From Middleware", req.nextUrl.pathname );
+// console.log("From Middleware", req.nextUrl.pathname );
 const token = await getToken({
         req,
-        secret: process.env.AUTH_SECRET,
+        secret: process.env.NEXTAUTH_SECRET,
         secureCookie: process.env.NODE_ENV === "production" ? true : false,
     })
 
@@ -16,6 +16,8 @@ const token = await getToken({
 
         return NextResponse.next()
     } else {
+        console.log("Token is",token);
+        
         return NextResponse.redirect(new URL('/login', req.url))
     }
 

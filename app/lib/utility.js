@@ -7,7 +7,7 @@ let imageUploadAPI = process.env.NEXT_PUBLIC_IMGBB_API_KEY;
 export const uploadImage = async imageFile => {
   const imageData = new FormData()
   imageData.append('image', imageFile)
-  console.log("Env Key Is: ", imageUploadAPI);
+  // console.log("Env Key Is: ", imageUploadAPI);
   
 
   const { data } = await axios.post(
@@ -21,7 +21,7 @@ export const uploadImage = async imageFile => {
 export const saveUserDataInDB = async (payload) =>{
     const userCollection = await dbConnect("users");
 
-    console.log(payload);
+    // console.log(payload);
      // Validation
     const { email, password } = payload;
     if (!email || !password) return null;
@@ -33,7 +33,7 @@ export const saveUserDataInDB = async (payload) =>{
         payload.password = hashedPassword
         const result = await userCollection.insertOne(payload);
         result.insertedId = result.insertedId.toString()
-        console.log(result);
+        // console.log(result);
         
         return result;
     }

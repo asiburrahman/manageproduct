@@ -19,7 +19,6 @@ const SocialLogin = () => {
    useEffect(() => {
     if (session?.status == "authenticated") {
       router.push("/");
-      toast("Successfully Logged IN");
     }
   }, [session?.status]);
 
