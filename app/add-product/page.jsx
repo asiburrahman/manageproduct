@@ -8,6 +8,7 @@ export default async function AddProductPage() {
   const session = await getServerSession(authOptions);
 
 console.log("Session is",session);
+console.log(process.env.NEXTAUTH_SECRET);
 
   // if (!session) {
   //   redirect("/api/auth/signin");

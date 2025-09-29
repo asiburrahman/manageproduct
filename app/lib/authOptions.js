@@ -2,7 +2,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import { loginUser } from "../actions/auth/loginUser";
-import dbConnect from "../lib/dbConnect"; // ✅
+import dbConnect from "../lib/dbConnect";
 
 export const authOptions = {
   providers: [
@@ -12,20 +12,14 @@ export const authOptions = {
         email: { label: "Email", type: "text", placeholder: "Enter Email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
-        try {
-          const user = await loginUser(credentials);
+      async authorize(credentials) {
+        const user = await loginUser(credentials);
 
-          if (!user) {
-            throw new Error("Invalid email or password"); // ✅ Proper custom error
-          }
-        console.log("User is", user);
-          
-          return user;
-        } catch (error) {
-          // console.error("Authorization error:", error);
-          throw new Error("Invalid email or password"); // ✅ Show custom error in client
+        if (!user) {
+          throw new Error("Invalid email or password");
         }
+
+        return user; // ✅ must return { id, name, email, role }
       },
     }),
 
@@ -40,10 +34,15 @@ export const authOptions = {
     }),
   ],
 
-  // ✅ Custom login page
   pages: {
     signIn: "/login",
-    error: "/login", // ✅ Redirect errors to login page
+    error: "/login",
+  },
+
+  session: {
+    strategy: "jwt", // ✅ (UPDATE) Added this
+    // Why: By default, NextAuth may use DB sessions, which break in serverless (Vercel).
+    // Using JWT ensures sessions are stored in secure cookies and always available.
   },
 
   callbacks: {
@@ -53,7 +52,7 @@ export const authOptions = {
           const { providerAccountId, provider } = account;
           const { email, name, image } = user;
 
-          const userCollection = await dbConnect("users"); // ✅ Added await
+          const userCollection = await dbConnect("users"); // ✅ (unchanged, but note: might slow Vercel cold starts)
 
           const isExisted = await userCollection.findOne({ providerAccountId });
 
@@ -74,7 +73,7 @@ export const authOptions = {
 
         return true;
       } catch (error) {
-        // console.error("OAuth signIn error:", error);
+        console.error("OAuth signIn error:", error);
         return false;
       }
     },
@@ -89,12 +88,20 @@ export const authOptions = {
 
     async session({ session, token }) {
       if (token) {
-        session.user.id = token.id;
-        session.user.role = token.role;
+        // ✅ (UPDATE) Instead of mutating existing session.user,
+        // I replace it entirely with a new object.
+        // Why: Mutating can cause hydration mismatch in Next.js App Router.
+        session.user = {
+          id: token.id,
+          role: token.role,
+          email: session.user?.email,
+          name: session.user?.name,
+          image: session.user?.image,
+        };
       }
       return session;
     },
   },
 
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET, // ✅ make sure it's set in Vercel
 };
