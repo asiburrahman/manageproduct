@@ -1,5 +1,7 @@
 
 import Hero from "./components/Hero";
+import ProductStats from "./components/ProductStats";
+import Testimonials from "./components/Testimonials";
 import Service from "./service/componant/Service";
 
 
@@ -10,6 +12,8 @@ export default function Home() {
     
     <Hero></Hero>
     <Service></Service>
+    <ProductStats></ProductStats>
+    <Testimonials></Testimonials>
 
   </div>
   );

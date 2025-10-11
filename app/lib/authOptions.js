@@ -74,7 +74,6 @@ export const authOptions = {
         return true;
       } catch (error) {
         console.error("OAuth signIn error:", error);
-        return false;
       }
     },
 
@@ -103,5 +102,7 @@ export const authOptions = {
     },
   },
 
-  secret: process.env.NEXTAUTH_SECRET, // ✅ make sure it's set in Vercel
+  secret: process.env.NEXTAUTH_SECRET,
+  
+   // ✅ make sure it's set in Vercel
 };
