@@ -2,7 +2,7 @@
 import Hero from "./components/Hero";
 import ProductStats from "./components/ProductStats";
 import Testimonials from "./components/Testimonials";
-import Service from "./service/componant/Service";
+import Service from "./service/component/Service";
 
 
 

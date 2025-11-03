@@ -1,5 +1,5 @@
 "use client";
-import ProductCard from "@/app/service/componant/ProductCard";
+import ProductCard from "@/app/service/component/ProductCard";
 import { useEffect, useState } from "react";
 
 const ProductsPage = () => {
