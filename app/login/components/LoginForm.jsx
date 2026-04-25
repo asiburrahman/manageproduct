@@ -34,7 +34,8 @@ export default function LoginForm() {
         }
       } else {
         toast.success("Logged in successfully!");
-        router.push("/");
+        // Force a hard navigation to clear Next.js Router cache and ensure middleware gets the cookie
+        window.location.href = "/";
       }
     } catch (err) {
       toast.error("Login failed. Please try again.");
