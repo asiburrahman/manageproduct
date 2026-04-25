@@ -190,21 +190,34 @@ export default function ProfilePage() {
             </div>
 
             {/* 
-               Manual Upload Option 
-               This is now the primary way to change the profile photo.
+               Change Profile Photo Section 
+               Updated to show the user's existing photo beside the change button for better UX.
             */}
             <div className="form-control">
               <label className="label font-bold text-xs uppercase text-gray-500 tracking-wider">Profile Photo</label>
               <div 
                 onClick={() => document.getElementById('photo-upload').click()}
-                className="flex items-center gap-4 bg-base-200/50 p-4 rounded-xl border-2 border-dashed border-base-300 hover:border-primary hover:bg-primary/5 transition-all cursor-pointer group"
+                className="flex items-center gap-4 bg-base-200/50 p-4 rounded-2xl border-2 border-dashed border-base-300 hover:border-primary hover:bg-primary/5 transition-all cursor-pointer group"
               >
-                <div className="bg-primary/10 group-hover:bg-primary group-hover:text-white p-3 rounded-xl text-primary text-xl transition-all shadow-sm">
-                   {isUploadingImage ? <span className="loading loading-spinner loading-sm"></span> : <FaCamera />}
+                {/* 
+                   Existing Photo Preview 
+                */}
+                <div className="relative">
+                   <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-base-100 shadow-sm">
+                      <img 
+                        src={getValidSrc(image)} 
+                        alt="Current Profile" 
+                        className="w-full h-full object-cover"
+                      />
+                   </div>
+                   <div className="absolute -bottom-1 -right-1 bg-primary text-white p-1 rounded-full text-[10px] shadow-sm">
+                      <FaCamera />
+                   </div>
                 </div>
+
                 <div className="flex flex-col">
-                   <span className="text-sm font-bold text-base-content">Upload New Photo</span>
-                   <span className="text-[10px] text-gray-500 italic">Click to select a file from your computer</span>
+                   <span className="text-sm font-bold text-base-content">Change profile photo</span>
+                   <span className="text-[10px] text-gray-500 italic">Select a new image file to update</span>
                 </div>
               </div>
             </div>
