@@ -101,18 +101,10 @@ const Navbar = () => {
 
           <ul className="menu menu-horizontal px-1">
             {
-              /* 
-                 Premium User Dropdown Design
-                 Shows user image and a nice hover/click menu with icons.
-              */
               status === "authenticated" && session?.user ? (
                 <li className="dropdown dropdown-end">
-                  <div 
-                    tabIndex={0} 
-                    role="button" 
-                    className="btn btn-ghost btn-circle avatar border-2 border-white/20 hover:border-white transition-all duration-300 shadow-md"
-                  >
-                    <div className="w-10 rounded-full bg-base-200">
+                  <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar border-2 border-transparent hover:border-white transition-all">
+                    <div className="w-10 rounded-full bg-white">
                       <img
                         alt="User Avatar"
                         src={
@@ -124,60 +116,38 @@ const Navbar = () => {
                       />
                     </div>
                   </div>
-                  {/* Enhanced Dropdown Menu */}
                   <ul
                     tabIndex={0}
-                    className="menu menu-sm dropdown-content bg-base-100/95 backdrop-blur-md rounded-2xl z-50 mt-4 w-64 p-3 shadow-2xl border border-base-200"
+                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-4 w-56 p-2 shadow-xl text-base-content"
                   >
-                    <li className="mb-3 px-4 py-3 bg-base-200/50 rounded-xl pointer-events-none">
-                      <div className="flex flex-col gap-0.5">
-                        <span className="font-bold text-base text-base-content truncate">
-                          {session.user.name || "User"}
-                        </span>
-                        <span className="text-xs text-base-content/60 truncate italic">
-                          {session.user.email}
-                        </span>
-                      </div>
+                    <li className="mb-2 px-4 py-2 border-b border-base-200 opacity-100 pointer-events-none">
+                      <span className="font-bold block truncate text-sm">{session.user.name || "User"}</span>
+                      <span className="text-xs text-gray-500 block truncate">{session.user.email}</span>
                     </li>
-                    
-                    <div className="space-y-1">
-                      <li>
-                        <Link 
-                          href="/profile" 
-                          className="flex items-center gap-3 py-3 px-4 font-medium hover:bg-primary hover:text-primary-content transition-colors rounded-xl"
-                        >
-                          <FaUser className="text-lg opacity-70" /> Profile Settings
-                        </Link>
-                      </li>
-                      
-                      <li>
-                        <button 
-                          onClick={() => signOut()} 
-                          className="flex items-center gap-3 py-3 px-4 font-medium text-error hover:bg-error hover:text-error-content transition-colors rounded-xl mt-1"
-                        >
-                          <FaSignOutAlt className="text-lg opacity-70" /> Logout
-                        </button>
-                      </li>
-                    </div>
+                    <li>
+                      <Link href="/profile" className="flex items-center gap-3 py-3 font-semibold hover:bg-base-200 rounded-lg">
+                        <FaUser className="text-primary text-lg" /> Profile Settings
+                      </Link>
+                    </li>
+                    <li>
+                      <button onClick={() => signOut()} className="flex items-center gap-3 py-3 font-semibold text-error hover:bg-red-50 rounded-lg">
+                        <FaSignOutAlt className="text-lg" /> Logout
+                      </button>
+                    </li>
                   </ul>
                 </li>
-              ) : (
-                /* 
-                   Login/Register buttons for guests
-                */
-                <>
-                  <li>
-                    <Link href={"/register"} className="flex items-center gap-1">
-                      <FaUserPlus className="hidden md:block" /> Register
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href={"/login"} className="flex items-center">
-                      <FaSignInAlt className="hidden md:block" /> Login
-                    </Link>
-                  </li>
-                </>
-              )
+              ) : (<>
+                <li>
+                  <Link href={"/register"} className="flex items-center gap-1">
+                    <FaUserPlus className="hidden md:block" /> Register
+                  </Link>
+                </li>
+                <li>
+                  <Link href={"/login"} className="flex items-center">
+                    <FaSignInAlt className="hidden md:block" /> Login
+                  </Link>
+                </li>
+              </>)
             }
 
           </ul>
