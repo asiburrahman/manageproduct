@@ -1,26 +1,64 @@
 # ProductManage 🛒
 
-ProductManage is a modern web application for managing products with features like product listing, product details, discounts, stock availability, and user-friendly navigation. Built with **Next.js**, **Tailwind CSS**, and **MongoDB**, it provides a smooth and responsive experience.
+**ProductManage** is a premium, full-stack web application designed for seamless product management and user engagement. Built with a modern tech stack including **Next.js 16**, **React 19**, and **MongoDB**, it features a robust authentication system, real-time profile updates, and a responsive shopping experience.
+
+🔗 **Live Demo**: [https://manageproduct.vercel.app](https://manageproduct.vercel.app)
 
 ---
 
-## 🚀 Features
-- Browse product catalog with images, prices, and discounts.
-- View detailed product information with ratings and stock availability.
-- Add products to the cart.
-- Dynamic routing for product details pages.
-- Responsive UI with Tailwind CSS.
-- Server-side rendering (SSR) for SEO and performance.
-- Secure image upload & product management (Admin functionality coming soon).
+## 🚀 Key Features
+
+### 🔐 Authentication & Security
+- **Full Auth System**: Implemented using **NextAuth.js**.
+- **Multiple Providers**: Support for **Google Login** and traditional **Credentials (Email/Password)**.
+- **Protected Routes**: Secure access to management features like "Add Product" using custom middleware.
+- **Session Sync**: Real-time session synchronization for instant UI updates across the application.
+
+### 👤 User Profile Management
+- **Dedicated Profile Page**: A beautiful, responsive profile dashboard (`/profile`) with gradient aesthetics.
+- **Manual Photo Upload**: Integrated **ImgBB API** for direct photo uploads from the browser.
+- **Real-time Updates**: Change your name or photo and see the changes reflected in the Navbar instantly without a page refresh.
+- **Premium Navigation**: Custom user dropdown in the Navbar with backdrop-blur and icon-rich menus.
+
+### 📦 Product Experience
+- **Modern Product Catalog**: Clean grid layout with hover effects, status badges (Price, Stock, Brand), and rating displays.
+- **Dynamic Product Details**: Full-width image handling with `object-contain` to preserve aspect ratios, plus detailed specifications.
+- **Inventory Management**: Easy-to-use interface for adding new products to the database.
+
+### 🎨 Design & UX
+- **Rich Aesthetics**: Leverages **Tailwind CSS** and **DaisyUI** for a consistent, professional design system.
+- **Responsive Layout**: Fully optimized for mobile, tablet, and desktop viewing.
+- **Micro-animations**: Smooth transitions, loading states, and hover effects for a "live" feel.
 
 ---
 
-## 🛠️ Setup & Installation
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Library**: React 19
+- **Database**: MongoDB (implemented with a singleton pattern for reliable serverless connections)
+- **Authentication**: NextAuth.js (JWT Strategy)
+- **Styling**: Tailwind CSS & DaisyUI
+- **Image Hosting**: ImgBB
+- **Notifications**: React Toastify
+
+---
+
+## 📂 Project Structure
+
+- `/app`: Next.js App Router (Pages, API Routes, Layouts)
+- `/components`: Reusable UI components and Shared layout elements
+- `/lib`: Database connection logic, Auth configuration, and core utilities
+- `/service`: Business logic components and product-related services
+
+---
+
+## ⚙️ Setup & Installation
 
 1. **Clone the repository**
    ```bash
    git clone https://github.com/asiburrahman/manageproduct
-   cd productmanage
+   cd manageproduct
    ```
 
 2. **Install dependencies**
@@ -28,10 +66,15 @@ ProductManage is a modern web application for managing products with features li
    npm install
    ```
 
-3. **Create `.env.local` file** in the project root and add:
+3. **Environment Variables**
+   Create a `.env.local` file in the root directory and add:
    ```env
-   MONGODB_URI=your_mongodb_connection_string
-   NEXT_PUBLIC_API_URL=http://localhost:3000
+   NEXT_PUBLIC_MONGODB_URI=your_mongodb_connection_string
+   NEXTAUTH_SECRET=your_nextauth_secret
+   NEXTAUTH_URL=http://localhost:3000
+   NEXT_PUBLIC_IMGBB_API_KEY=your_imgbb_api_key
+   GOOGLE_CLIENT_ID=your_google_id
+   GOOGLE_CLIENT_SECRET=your_google_secret
    ```
 
 4. **Run the development server**
@@ -43,38 +86,7 @@ ProductManage is a modern web application for managing products with features li
 
 ---
 
-## 📂 Route Summary
-
-### Frontend Routes
-| Route                 | Description                                  |
-|-----------------------|----------------------------------------------|
-| `/`                   | Homepage with product listings               |
-| `/products/[id]`      | Dynamic product details page                 |
-| `/about`              | About page with project information          |
-| `/contact`            | Contact page with form and contact details   |
-| `/add-product`        | add product                                  |
-
-
-
----
-
-## 📦 Tech Stack
-- **Frontend:** Next.js, React, Tailwind CSS, DaisyUI
-- **Backend:** Next.js API routes, MongoDB
-- **Auth:** (Planned) NextAuth.js
-- **Deployment:** Vercel
-
----
-
-## 📌 Future Enhancements
-- Admin dashboard for product management (CRUD).
-- Authentication with NextAuth (Google, GitHub, Credentials).
-- Shopping cart with checkout system.
-- Image upload using Cloudinary or Firebase.
-- Role-based access for Admin & Users.
-
----
-
 ## 👨‍💻 Author
-- **Asibur Rahman**  
-  [Portfolio](https://asibur-portfolio-react.netlify.app) | [GitHub](https://github.com/asiburrahman) | [LinkedIn](https://www.linkedin.com/in/asiburrahman/)
+
+**Asibur Rahman**  
+[Portfolio](https://asibur-portfolio-react.netlify.app) | [GitHub](https://github.com/asiburrahman) | [LinkedIn](https://www.linkedin.com/in/asiburrahman/)
