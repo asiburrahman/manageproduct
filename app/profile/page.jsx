@@ -191,7 +191,7 @@ export default function ProfilePage() {
 
             {/* 
                Manual Upload Option 
-               Added a dedicated button/section for manual file selection as requested.
+               This is now the primary way to change the profile photo.
             */}
             <div className="form-control">
               <label className="label font-bold text-xs uppercase text-gray-500 tracking-wider">Profile Photo</label>
@@ -203,25 +203,10 @@ export default function ProfilePage() {
                    {isUploadingImage ? <span className="loading loading-spinner loading-sm"></span> : <FaCamera />}
                 </div>
                 <div className="flex flex-col">
-                   <span className="text-sm font-bold text-base-content">Upload Photo Manually</span>
-                   <span className="text-[10px] text-gray-500 italic">Supports JPG, PNG, WEBP (Max 10MB)</span>
+                   <span className="text-sm font-bold text-base-content">Upload New Photo</span>
+                   <span className="text-[10px] text-gray-500 italic">Click to select a file from your computer</span>
                 </div>
               </div>
-            </div>
-
-            {/* 
-               Manual URL Input fallback 
-            */}
-            <div className="form-control">
-              <label className="label font-bold text-xs uppercase text-gray-500 tracking-wider">Or Image URL</label>
-              <input
-                type="text"
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-                className="input input-bordered w-full focus:input-primary bg-base-200/50 border-none rounded-xl"
-                placeholder="https://example.com/my-photo.jpg"
-              />
-              <label className="label text-[10px] text-gray-400">Your profile will update instantly after saving.</label>
             </div>
 
             <button 
