@@ -4,15 +4,21 @@ import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import Image from "next/image";
+/* Added FaCamera for the upload button icon */
+import { FaCamera } from "react-icons/fa";
 
 export default function ProfilePage() {
   const { data: session, status, update } = useSession();
   const [name, setName] = useState("");
+  const [image, setImage] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
+  /* Added state to track image upload progress */
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
 
   useEffect(() => {
     if (session?.user) {
       setName(session.user.name || "");
+      setImage(session.user.image || "");
     }
   }, [session]);
 
@@ -23,6 +29,9 @@ export default function ProfilePage() {
       const url = new URL(src);
       /* 
          Next.js Image requires hostnames to be whitelisted. 
+         If a user types a partial URL (like https://i.ibb.c), 
+         it might be a "valid" URL but won't match our config.
+         We add a check for a proper TLD to minimize crashes during typing.
       */
       const parts = url.hostname.split('.');
       if (parts.length < 2 || parts.pop().length < 2) {
@@ -34,18 +43,54 @@ export default function ProfilePage() {
     }
   };
 
+  /* 
+     New feature: handleImageUpload 
+     Uploads the selected file to ImgBB and updates the image URL state.
+  */
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setIsUploadingImage(true);
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      // Using the ImgBB API key from environment variables
+      const res = await fetch(
+        `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const data = await res.json();
+      if (data.success) {
+        setImage(data.data.url); // Update state with the new URL
+        toast.success("Image uploaded successfully!");
+      } else {
+        toast.error("Failed to upload image. Please check your API key.");
+      }
+    } catch (err) {
+      toast.error("An error occurred while uploading the image.");
+    } finally {
+      setIsUploadingImage(false);
+    }
+  };
+
   const handleUpdate = async (e) => {
     e.preventDefault();
     setIsUpdating(true);
 
     try {
       /* 
-         Update only the name now, as the image upload option was removed.
+         Sends the updated name and image URL (could be from upload or manual input) 
+         to our internal update API.
       */
       const res = await fetch("/api/users/update", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, image: session?.user?.image }),
+        body: JSON.stringify({ name, image }),
       });
 
       const data = await res.json();
@@ -54,8 +99,8 @@ export default function ProfilePage() {
         throw new Error(data.error || "Failed to update profile");
       }
 
-      // Update the client-side session with the new name
-      await update({ name });
+      // Important: Tell NextAuth to update the client-side session cookie!
+      await update({ name, image });
       
       toast.success("Profile updated successfully!");
     } catch (error) {
@@ -81,18 +126,42 @@ export default function ProfilePage() {
         <div className="h-32 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600"></div>
         
         <div className="px-8 pb-8 relative">
-          {/* Avatar Profile Section (Display Only) */}
+          {/* Avatar Profile Section with Upload Overlay */}
           <div className="flex justify-center -mt-16 mb-6">
-            <div className="avatar">
-              <div className="w-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 shadow-xl bg-white overflow-hidden">
-                <Image
-                  src={getValidSrc(session?.user?.image)}
-                  alt="Profile"
-                  width={128}
-                  height={128}
-                  className="object-cover"
-                />
+            <div className="relative group">
+              <div className="avatar">
+                <div className="w-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 shadow-xl bg-white overflow-hidden">
+                  <Image
+                    src={getValidSrc(image)} // Show current state (uploaded or initial)
+                    alt="Profile"
+                    width={128}
+                    height={128}
+                    className="object-cover"
+                  />
+                </div>
               </div>
+              
+              {/* Upload Overlay Button */}
+              <label 
+                htmlFor="photo-upload" 
+                className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer text-xs font-bold"
+              >
+                {isUploadingImage ? (
+                  <span className="loading loading-spinner loading-xs"></span>
+                ) : (
+                  <>
+                    <FaCamera className="text-xl mb-1" />
+                    <span>Upload</span>
+                  </>
+                )}
+              </label>
+              <input 
+                id="photo-upload" 
+                type="file" 
+                accept="image/*" 
+                onChange={handleImageUpload} 
+                className="hidden" 
+              />
             </div>
           </div>
 
@@ -107,6 +176,8 @@ export default function ProfilePage() {
           <form onSubmit={handleUpdate} className="space-y-6 max-w-md mx-auto">
             {/* 
                Display Name Input 
+               Removed the duplicate upload option from the bottom as requested.
+               Users can now only change their photo by clicking the avatar at the top.
             */}
             <div className="form-control">
               <label className="label font-bold text-xs uppercase text-gray-500 tracking-wider">Display Name</label>
@@ -123,7 +194,7 @@ export default function ProfilePage() {
             <button 
               type="submit" 
               className="btn btn-primary w-full rounded-xl shadow-lg hover:shadow-primary/20 transition-all border-none font-bold uppercase tracking-widest text-xs" 
-              disabled={isUpdating}
+              disabled={isUpdating || isUploadingImage}
             >
               {isUpdating ? <span className="loading loading-spinner loading-sm"></span> : "Save Profile Changes"}
             </button>
@@ -134,5 +205,4 @@ export default function ProfilePage() {
     </div>
   );
 }
-
 
