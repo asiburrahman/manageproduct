@@ -8,7 +8,7 @@ const Hero = () => {
     <div className="relative w-full h-screen">
       {/* Background image */}
       <Image
-        src="/product.jpg" // Make sure this image exists in /public
+        src="/assets/images/product.jpg" // Make sure this image exists in /public
         alt="Hero Background"
         fill
         className="object-cover object-center"

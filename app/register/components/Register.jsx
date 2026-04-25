@@ -4,7 +4,7 @@ import Link from "next/link";
 import { TbFidgetSpinner } from 'react-icons/tb';
 import { FaFacebookF, FaLinkedinIn, FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import { registerUser } from "@/app/actions/auth/registerUser";
-import { saveUserDataInDB, uploadImage } from "@/app/lib/utility";
+import { saveUserDataInDB, uploadImage } from "@/lib/utility";
 import { toast, ToastContainer } from "react-toastify";
 // import SocialLogin from "@/app/login/components/SocialLogin";
 const Register = () => {

@@ -85,7 +85,7 @@ const Navbar = () => {
           </div>
           <div className="flex items-center justify-center gap-2">
             <Link href="/" className="text-sm font-bold md:text-2xl lg:text-3xl">
-              <img className="w-12 h-12 rounded-full md:inline-block" src="/logo.png" alt="logo" />
+              <img className="w-12 h-12 rounded-full md:inline-block" src="/assets/images/logo.png" alt="logo" />
             </Link>
             <Link href="/">
             <h1 className="text-xl hidden md:block">ProductManage</h1>

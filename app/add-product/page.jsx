@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "../lib/authOptions";
+import { authOptions } from "@/lib/authOptions";
 import AddProductForm from "./components/AddProductPage";
 
 
